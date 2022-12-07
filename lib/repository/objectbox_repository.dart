@@ -11,13 +11,13 @@ class ObjectBoxRepository{
 
   void insert(String name){
     final userBox = ObjectBox.store.box<User>();
-    userBox.put(User(name, 1));
+    // userBox.put(User(name, 1));
   }
 
   void getAll(){
     final userBox = ObjectBox.store.box<User>();
     
-    print(userBox.getAll().last.idade);
+    print(userBox.getAll().last.id);
   }
 
 }
