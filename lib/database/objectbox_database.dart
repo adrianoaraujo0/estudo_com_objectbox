@@ -1,9 +1,9 @@
+import 'package:object_box/database/objectbox.g.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
-import 'objectbox.g.dart'; // created by `flutter pub run build_runner build`
 
 class ObjectBox {
-  /// The Store of this app.
+  // The Store of this app.
   static late final Store store;
  
   static Future<void> create() async {

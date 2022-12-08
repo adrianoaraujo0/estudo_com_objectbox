@@ -1,23 +1,23 @@
-import 'package:object_box/database/objectbox_database.dart';
-import 'package:object_box/models/user.dart';
+// import 'package:object_box/database/objectbox_database.dart';
+// import 'package:object_box/models/ingredient_meal.dart';
+// import 'package:object_box/models/meal.dart';
 
-class ObjectBoxRepository{
+// class ObjectBoxRepository{
 
-   ObjectBox? objectBox;
+//    ObjectBox? objectBox;
   
-  Future<void> initDb() async{
-    await ObjectBox.create();
-  }
+//   Future<void> initDb() async{
+//     await ObjectBox.create();
+//   }
 
-  void insert(String name){
-    final userBox = ObjectBox.store.box<User>();
-    // userBox.put(User(name, 1));
-  }
+//   void insert(String name){
+ 
+//   }
 
-  void getAll(){
-    final userBox = ObjectBox.store.box<User>();
+//   void getAll(){
+//     final mealId = ObjectBox.store.box<Meal>();
     
-    print(userBox.getAll().last.id);
-  }
+//     print(mealId.getAll().last.id);
+//   }
 
-}
+// }

@@ -14,36 +14,83 @@ import 'package:objectbox/internal.dart'; // generated code can access "internal
 import 'package:objectbox/objectbox.dart';
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import '../models/user.dart';
+import '../model/ingredient_meal.dart';
+import '../model/meal.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
 final _entities = <ModelEntity>[
   ModelEntity(
-      id: const IdUid(1, 8293287712145168995),
-      name: 'User',
-      lastPropertyId: const IdUid(4, 7158169397559965922),
+      id: const IdUid(2, 3305695700252335687),
+      name: 'Meal',
+      lastPropertyId: const IdUid(9, 8550505147414264054),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 7067482354506762188),
+            id: const IdUid(1, 7100719541391707666),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 66846518133977333),
+            id: const IdUid(4, 3980307270058277638),
             name: 'name',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 4045330148520136499),
-            name: 'date',
-            type: 10,
+            id: const IdUid(5, 80417179378224584),
+            name: 'category',
+            type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(4, 7158169397559965922),
-            name: 'idade',
+            id: const IdUid(6, 7622969020991298210),
+            name: 'imgUrl',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(7, 2779469199541599753),
+            name: 'duration',
+            type: 8,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(8, 1443330293888740086),
+            name: 'complexity',
+            type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(9, 8550505147414264054),
+            name: 'cost',
+            type: 9,
+            flags: 0)
+      ],
+      relations: <ModelRelation>[],
+      backlinks: <ModelBacklink>[
+        ModelBacklink(
+            name: 'ingredientMeal',
+            srcEntity: 'IngredientMeal',
+            srcField: 'meal')
+      ]),
+  ModelEntity(
+      id: const IdUid(3, 1458516685367190100),
+      name: 'IngredientMeal',
+      lastPropertyId: const IdUid(5, 2587049726254703975),
+      flags: 0,
+      properties: <ModelProperty>[
+        ModelProperty(
+            id: const IdUid(1, 6566988613908406982),
+            name: 'id',
             type: 6,
+            flags: 1),
+        ModelProperty(
+            id: const IdUid(4, 3451403081760921376),
+            name: 'mealId',
+            type: 11,
+            flags: 520,
+            indexId: const IdUid(2, 1356077761362915434),
+            relationTarget: 'Meal'),
+        ModelProperty(
+            id: const IdUid(5, 2587049726254703975),
+            name: 'name',
+            type: 9,
             flags: 0)
       ],
       relations: <ModelRelation>[],
@@ -70,52 +117,122 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(1, 8293287712145168995),
-      lastIndexId: const IdUid(0, 0),
+      lastEntityId: const IdUid(3, 1458516685367190100),
+      lastIndexId: const IdUid(2, 1356077761362915434),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
-      retiredEntityUids: const [],
-      retiredIndexUids: const [],
-      retiredPropertyUids: const [],
+      retiredEntityUids: const [8293287712145168995],
+      retiredIndexUids: const [8911009484599825058],
+      retiredPropertyUids: const [
+        7158169397559965922,
+        5826341739853266100,
+        7067482354506762188,
+        66846518133977333,
+        4045330148520136499,
+        8776113218942918590,
+        1436265010616606967,
+        5045354455689751549,
+        4460203573687529873
+      ],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
       version: 1);
 
   final bindings = <Type, EntityDefinition>{
-    User: EntityDefinition<User>(
+    Meal: EntityDefinition<Meal>(
         model: _entities[0],
-        toOneRelations: (User object) => [],
-        toManyRelations: (User object) => {},
-        getId: (User object) => object.id,
-        setId: (User object, int id) {
+        toOneRelations: (Meal object) => [],
+        toManyRelations: (Meal object) => {
+              RelInfo<IngredientMeal>.toOneBacklink(4, object.id!,
+                      (IngredientMeal srcObject) => srcObject.meal):
+                  object.ingredientMeal
+            },
+        getId: (Meal object) => object.id,
+        setId: (Meal object, int id) {
           object.id = id;
         },
-        objectToFB: (User object, fb.Builder fbb) {
+        objectToFB: (Meal object, fb.Builder fbb) {
           final nameOffset =
               object.name == null ? null : fbb.writeString(object.name!);
-          fbb.startTable(5);
-          fbb.addInt64(0, object.id);
-          fbb.addOffset(1, nameOffset);
-          fbb.addInt64(2, object.date?.millisecondsSinceEpoch);
-          fbb.addInt64(3, object.idade);
+          final categoryOffset = object.category == null
+              ? null
+              : fbb.writeString(object.category!);
+          final imgUrlOffset =
+              object.imgUrl == null ? null : fbb.writeString(object.imgUrl!);
+          final complexityOffset = object.complexity == null
+              ? null
+              : fbb.writeString(object.complexity!);
+          final costOffset =
+              object.cost == null ? null : fbb.writeString(object.cost!);
+          fbb.startTable(10);
+          fbb.addInt64(0, object.id ?? 0);
+          fbb.addOffset(3, nameOffset);
+          fbb.addOffset(4, categoryOffset);
+          fbb.addOffset(5, imgUrlOffset);
+          fbb.addFloat64(6, object.duration);
+          fbb.addOffset(7, complexityOffset);
+          fbb.addOffset(8, costOffset);
           fbb.finish(fbb.endTable());
-          return object.id;
+          return object.id ?? 0;
         },
         objectFromFB: (Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-          final dateValue =
-              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 8);
-          final object = User(
-              const fb.StringReader(asciiOptimization: true)
-                  .vTableGetNullable(buffer, rootOffset, 6),
-              const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 10))
-            ..id = const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0)
-            ..date = dateValue == null
-                ? null
-                : DateTime.fromMillisecondsSinceEpoch(dateValue);
 
+          final object = Meal()
+            ..id =
+                const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 4)
+            ..name = const fb.StringReader(asciiOptimization: true)
+                .vTableGetNullable(buffer, rootOffset, 10)
+            ..category = const fb.StringReader(asciiOptimization: true)
+                .vTableGetNullable(buffer, rootOffset, 12)
+            ..imgUrl = const fb.StringReader(asciiOptimization: true)
+                .vTableGetNullable(buffer, rootOffset, 14)
+            ..duration = const fb.Float64Reader()
+                .vTableGetNullable(buffer, rootOffset, 16)
+            ..complexity = const fb.StringReader(asciiOptimization: true)
+                .vTableGetNullable(buffer, rootOffset, 18)
+            ..cost = const fb.StringReader(asciiOptimization: true)
+                .vTableGetNullable(buffer, rootOffset, 20);
+          InternalToManyAccess.setRelInfo(
+              object.ingredientMeal,
+              store,
+              RelInfo<IngredientMeal>.toOneBacklink(
+                  4, object.id!, (IngredientMeal srcObject) => srcObject.meal),
+              store.box<Meal>());
+          return object;
+        }),
+    IngredientMeal: EntityDefinition<IngredientMeal>(
+        model: _entities[1],
+        toOneRelations: (IngredientMeal object) => [object.meal],
+        toManyRelations: (IngredientMeal object) => {},
+        getId: (IngredientMeal object) => object.id,
+        setId: (IngredientMeal object, int id) {
+          object.id = id;
+        },
+        objectToFB: (IngredientMeal object, fb.Builder fbb) {
+          final nameOffset =
+              object.name == null ? null : fbb.writeString(object.name!);
+          fbb.startTable(6);
+          fbb.addInt64(0, object.id ?? 0);
+          fbb.addInt64(3, object.meal.targetId);
+          fbb.addOffset(4, nameOffset);
+          fbb.finish(fbb.endTable());
+          return object.id ?? 0;
+        },
+        objectFromFB: (Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+
+          final object = IngredientMeal()
+            ..id =
+                const fb.Int64Reader().vTableGetNullable(buffer, rootOffset, 4)
+            ..name = const fb.StringReader(asciiOptimization: true)
+                .vTableGetNullable(buffer, rootOffset, 12);
+          object.meal.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
+          object.meal.attach(store);
           return object;
         })
   };
@@ -123,17 +240,42 @@ ModelDefinition getObjectBoxModel() {
   return ModelDefinition(model, bindings);
 }
 
-/// [User] entity fields to define ObjectBox queries.
-class User_ {
-  /// see [User.id]
-  static final id = QueryIntegerProperty<User>(_entities[0].properties[0]);
+/// [Meal] entity fields to define ObjectBox queries.
+class Meal_ {
+  /// see [Meal.id]
+  static final id = QueryIntegerProperty<Meal>(_entities[0].properties[0]);
 
-  /// see [User.name]
-  static final name = QueryStringProperty<User>(_entities[0].properties[1]);
+  /// see [Meal.name]
+  static final name = QueryStringProperty<Meal>(_entities[0].properties[1]);
 
-  /// see [User.date]
-  static final date = QueryIntegerProperty<User>(_entities[0].properties[2]);
+  /// see [Meal.category]
+  static final category = QueryStringProperty<Meal>(_entities[0].properties[2]);
 
-  /// see [User.idade]
-  static final idade = QueryIntegerProperty<User>(_entities[0].properties[3]);
+  /// see [Meal.imgUrl]
+  static final imgUrl = QueryStringProperty<Meal>(_entities[0].properties[3]);
+
+  /// see [Meal.duration]
+  static final duration = QueryDoubleProperty<Meal>(_entities[0].properties[4]);
+
+  /// see [Meal.complexity]
+  static final complexity =
+      QueryStringProperty<Meal>(_entities[0].properties[5]);
+
+  /// see [Meal.cost]
+  static final cost = QueryStringProperty<Meal>(_entities[0].properties[6]);
+}
+
+/// [IngredientMeal] entity fields to define ObjectBox queries.
+class IngredientMeal_ {
+  /// see [IngredientMeal.id]
+  static final id =
+      QueryIntegerProperty<IngredientMeal>(_entities[1].properties[0]);
+
+  /// see [IngredientMeal.meal]
+  static final meal =
+      QueryRelationToOne<IngredientMeal, Meal>(_entities[1].properties[1]);
+
+  /// see [IngredientMeal.name]
+  static final name =
+      QueryStringProperty<IngredientMeal>(_entities[1].properties[2]);
 }

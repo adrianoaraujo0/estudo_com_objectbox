@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:object_box/database/objectbox_database.dart';
-import 'package:object_box/models/user.dart';
 import 'package:object_box/repository/objectbox_repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await ObjectBox.create();
+  // await ObjectBox.create();
   runApp(const MyApp());
 }
 
@@ -37,7 +36,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  ObjectBoxRepository objectBoxRepository = ObjectBoxRepository();
+  // ObjectBoxRepository objectBoxRepository = ObjectBoxRepository();
   TextEditingController textEditingController = TextEditingController();
 
   @override
@@ -60,13 +59,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 IconButton(
                   onPressed: (){
-                    objectBoxRepository.insert(textEditingController.text);
+                    // objectBoxRepository.insert(textEditingController.text);
                   }, 
                   icon: const Icon(Icons.add)
                 ),
                 IconButton(
                   onPressed: (){
-                    objectBoxRepository.getAll();
+                    // objectBoxRepository.getAll();
                   }, 
                   icon: const Icon(Icons.search)
                 )
