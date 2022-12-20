@@ -21,6 +21,8 @@ dependencies:
   objectbox: ^1.6.2
   objectbox_flutter_libs: any
 
+  image_picker: ^0.8.6
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -30,6 +32,7 @@ dev_dependencies:
   objectbox_generator: any
 
   flutter_lints: ^2.0.0
+
 
 objectbox:
   output_dir: database
