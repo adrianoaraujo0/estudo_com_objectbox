@@ -13,5 +13,4 @@ class Teacher{
   @Backlink("Teacher")
   final course = ToOne<Teacher>();
 
-  Teacher({this.name, this.course});
 }
